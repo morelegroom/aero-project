@@ -1,126 +1,192 @@
-# ISA Atmospheric Conditions
+# ISA Atmosphere
 
 ## Purpose
 
-The baseline cruise calculation requires the air density at the selected cruise altitude.
+The purpose of this section is to establish the atmospheric conditions used in the baseline Cessna 152 cruise calculation using a standard-atmosphere model rather than prescribing air density arbitrarily.
 
-Rather than prescribing an arbitrary air-density value, the atmospheric condition is established using the **International Standard Atmosphere (ISA)** model.
+The aircraft baseline condition is:
 
-ISA provides a standardised representation of atmospheric properties, including temperature, pressure and density, as a function of altitude.
+* Altitude: 8,000 ft
+* Equivalent altitude: 2,438.4 m
+
+Atmospheric density is required because it is used to calculate dynamic pressure:
+
+$$
+q = \frac{1}{2}\rho V^2
+$$
+
+which is then used in the lift equation and the calculation of the lift coefficient.
 
 ---
 
-## Baseline Altitude
+## What is ISA?
 
-The selected cruise altitude is:
+ISA stands for **International Standard Atmosphere**.
 
-$$
-h=8000\ ft
-$$
+It is a standard model used to define atmospheric properties as a function of altitude. These properties include:
 
-Converting to metres:
+* Temperature
+* Pressure
+* Air density
+* Speed of sound
 
-$$
-h=8000\times0.3048
-$$
-
-$$
-\boxed{h=2438.4\ m}
-$$
+Using a standard atmosphere allows the aircraft calculation to be performed using a defined and reproducible atmospheric condition rather than selecting an arbitrary value for air density.
 
 ---
 
-## ISA Air Density
+## Reference Data
 
-At an altitude of approximately 2438 m under ISA conditions, the air density is approximately:
+The atmospheric conditions used in this analysis are based on published standard-atmosphere data.
 
-$$
-\boxed{\rho\approx0.963\ kg/m^3}
-$$
+The primary reference used is the NASA Technical Reports Server publication:
 
-This value is used in the baseline cruise calculation.
+**Standard Atmosphere — Tables and Data for Altitudes to 65,800 Feet**
 
----
+The reference contains tabulated standard-atmosphere properties over a range of altitudes, including atmospheric pressure and density.
 
-## Why Air Density Is Required
+**NASA reference:**
 
-Air density is an important variable in the aerodynamic force equations.
+[NASA Standard Atmosphere — Tables and Data for Altitudes to 65,800 Feet](https://ntrs.nasa.gov/citations/19930090991)
 
-The dynamic pressure is given by:
-
-$$
-q=\frac{1}{2}\rho V^2
-$$
-
-Therefore, for a given aircraft velocity, a change in air density changes the dynamic pressure acting on the aircraft.
-
-Lift is then calculated or related through:
-
-$$
-L=qSC_L
-$$
-
-or:
-
-$$
-L=\frac{1}{2}\rho V^2SC_L
-$$
-
-Consequently, establishing the atmospheric condition is necessary before deriving aerodynamic quantities such as the lift coefficient.
+This source provides the atmospheric reference behind the values used in the present calculation.
 
 ---
 
-## Atmospheric Assumption
+## Atmospheric Conditions at 8,000 ft
 
-The baseline calculation assumes:
+For the baseline cruise condition, the aircraft is assumed to be operating at 8,000 ft under standard-atmosphere conditions.
 
-* International Standard Atmosphere (ISA)
-* Altitude = 8000 ft
-* No deviation from standard atmospheric conditions
-* Constant atmospheric properties for the defined baseline flight condition
+The corresponding atmospheric conditions are approximately:
 
-This provides a consistent reference condition for the initial analysis.
+| Parameter   |         Value | Basis                         |
+| ----------- | ------------: | ----------------------------- |
+| Altitude    |      8,000 ft | Selected cruise condition     |
+| Altitude    |     2,438.4 m | Unit conversion               |
+| Temperature |       272.3 K | Standard atmosphere           |
+| Pressure    |    ≈ 75.3 kPa | Standard atmosphere           |
+| Density     | ≈ 0.963 kg/m³ | Standard atmosphere / derived |
+
+The density value is therefore not treated as an arbitrary input. It is associated with the defined standard-atmosphere condition at the selected altitude.
 
 ---
 
-## Relationship to the Baseline Calculation
+## Density Calculation
 
-The calculation sequence is:
-
-$$
-\text{Cruise Altitude}
-$$
+The relationship between pressure, temperature and density for air can be written as:
 
 $$
-\downarrow
+\rho = \frac{p}{RT}
 $$
 
-$$
-\text{ISA Atmospheric Conditions}
-$$
+where:
+
+* \(\rho\) = air density (kg/m³)
+* \(p\) = atmospheric pressure (Pa)
+* \(R\) = specific gas constant for dry air, approximately 287.05 J/(kg·K)
+* \(T\) = absolute temperature (K)
+
+Using the approximate standard-atmosphere conditions at 8,000 ft:
 
 $$
-\downarrow
-$$
-
-$$
-\text{Air Density}
+p \approx 75,300\ Pa
 $$
 
 $$
-\downarrow
+T \approx 272.3\ K
+$$
+
+Therefore:
+
+$$
+\rho =
+\frac{75,300}
+{287.05(272.3)}
 $$
 
 $$
-\text{Dynamic Pressure}
+\rho \approx 0.963\ kg/m^3
+$$
+
+This value is subsequently used in the dynamic-pressure calculation.
+
+---
+
+## Why Atmospheric Density is Required
+
+Dynamic pressure is calculated using:
+
+$$
+q = \frac{1}{2}\rho V^2
+$$
+
+Therefore, the atmospheric density directly affects the calculated dynamic pressure.
+
+Dynamic pressure is then used to determine the aerodynamic lift required for the aircraft's cruise condition:
+
+$$
+L = qSC_L
+$$
+
+Rearranging gives:
+
+$$
+C_L = \frac{L}{qS}
+$$
+
+This means that the atmospheric condition forms part of the calculation chain rather than being an independently selected coefficient.
+
+---
+
+## Calculation Sequence
+
+The atmospheric calculation forms the following part of the overall engineering methodology:
+
+**Selected altitude**
+
+↓
+
+**Standard-atmosphere reference**
+
+↓
+
+**Pressure and temperature**
+
+↓
+
+**Air density**
+
+$$
+\rho = \frac{p}{RT}
+$$
+
+↓
+
+**Dynamic pressure**
+
+$$
+q = \frac{1}{2}\rho V^2
+$$
+
+↓
+
+**Required lift and derived lift coefficient**
+
+$$
+L=W
 $$
 
 $$
-\downarrow
+C_L=\frac{L}{qS}
 $$
 
-$$
-\text{Required Lift and Derived }C_L
-$$
+This approach provides a traceable link between the selected aircraft operating condition and the aerodynamic quantities calculated later in the project.
 
-The air density of approximately \(0.963\ kg/m^3\) was therefore not selected arbitrarily. It is associated with the defined 8000 ft cruise condition under the ISA assumption.
+---
+
+## Source
+
+NASA Technical Reports Server.
+
+*Standard Atmosphere — Tables and Data for Altitudes to 65,800 Feet.*
+
+[NASA Standard Atmosphere Reference](https://ntrs.nasa.gov/citations/19930090991)
