@@ -11,9 +11,7 @@ The baseline aircraft condition selected for the study is:
 
 Atmospheric density is required because it is used to calculate dynamic pressure:
 
-\[
-q = \frac{1}{2}\rho V^2
-\]
+q = 0.5 ρV²
 
 Dynamic pressure is subsequently used in the lift equation and in the calculation of the lift coefficient.
 
@@ -38,13 +36,15 @@ Using a standard atmosphere provides a defined and reproducible atmospheric cond
 
 The atmospheric data used in this analysis are taken from the NASA publication:
 
-**Standard Atmosphere — Tables and Data for Altitudes to 65,800 Feet**
+**Standard Atmosphere – Tables and Data for Altitudes to 65,800 Feet**
 
 The NASA reference contains tabulated standard-atmosphere properties over a range of altitudes, including temperature, pressure and density.
 
-**Source:**
+Source:
 
-[NASA Standard Atmosphere — Tables and Data for Altitudes to 65,800 Feet](https://ntrs.nasa.gov/citations/19930090991)
+NASA Standard Atmosphere – Tables and Data for Altitudes to 65,800 Feet
+
+https://ntrs.nasa.gov/citations/19930090991
 
 The relevant data were extracted from the metric standard-atmosphere table in the NASA reference.
 
@@ -54,31 +54,23 @@ The relevant data were extracted from the metric standard-atmosphere table in th
 
 The Cessna 152 cruise condition selected from the aircraft performance data is:
 
-\[
-h = 8000\ ft
-\]
+h = 8000 ft
 
 The NASA metric table expresses altitude in metres, therefore the altitude is converted using:
 
-\[
-h_{m}=h_{ft}\times0.3048
-\]
+h(m) = h(ft) × 0.3048
 
 where:
 
-- \(h_m\) = altitude in metres
-- \(h_{ft}\) = altitude in feet
-- \(0.3048\) = conversion factor from feet to metres
+- h(m) = altitude in metres
+- h(ft) = altitude in feet
+- 0.3048 = conversion factor from feet to metres
 
 Substituting:
 
-\[
-h_m=8000\times0.3048
-\]
+h(m) = 8000 × 0.3048
 
-\[
-\boxed{h=2438.4\ m}
-\]
+h = 2438.4 m
 
 The required altitude of 2,438.4 m does not appear directly in the NASA table. The surrounding tabulated values at 2,400 m and 2,450 m are therefore used to determine the atmospheric conditions at the exact cruise altitude.
 
@@ -86,228 +78,122 @@ The required altitude of 2,438.4 m does not appear directly in the NASA table. T
 
 ## NASA Atmospheric Data Extraction
 
-The following values were read directly from the NASA standard-atmosphere table.
+The following values were extracted directly from the NASA standard-atmosphere table.
 
-| Altitude, H (m) | Temperature, t (°C) | Temperature, T (K) | Pressure, p × 10² (mb) |
-|---:|---:|---:|---:|
-| 2,400 | -0.600 | 272.560 | 75626 |
-| 2,450 | -0.925 | 272.235 | 75153 |
+| Altitude H (m) | Temperature t (°C) | Temperature T (K) | Pressure P × 10² (mb) |
+|---------------:|-------------------:|------------------:|----------------------:|
+| 2400 | -0.600 | 272.560 | 75626 |
+| 2450 | -0.925 | 272.235 | 75153 |
 
-These two rows surround the required altitude of 2,438.4 m.
+These two rows surround the required altitude of 2438.4 m.
 
-### Interpreting the NASA Pressure Column
+---
+
+## Interpreting the NASA Pressure Column
 
 The NASA table labels the pressure column as:
 
-\[
-p\times10^2
-\]
+P × 10² (mb)
 
-with the unit shown as mb.
+This means the pressure values have been scaled by a factor of 100.
 
-The values therefore contain a \(10^2\) scaling factor.
+For example:
 
-For example, the 2,400 m table value is:
+75626
 
-\[
-75626\times10^{-2}\ mb
-\]
+corresponds to:
 
-\[
-=756.26\ mb
-\]
+756.26 mb
 
 Since:
 
-\[
-1\ mb=100\ Pa
-\]
+1 mb = 100 Pa
 
-the pressure is:
+Therefore:
 
-\[
-756.26\times100
-\]
+756.26 × 100 = 75,626 Pa
 
-\[
-=75626\ Pa
-\]
-
-Therefore, the NASA table value of 75626 corresponds to:
-
-\[
-\boxed{756.26\ mb=75626\ Pa}
-\]
-
-The same interpretation is applied to the 2,450 m pressure value.
+The same interpretation is applied to the remaining pressure values used in this analysis.
 
 ---
 
 ## Linear Interpolation Method
 
-The required altitude of 2,438.4 m lies between the two available NASA table values:
+The required altitude lies between the two available NASA table values:
 
-\[
-2400<2438.4<2450
-\]
+2400 m < 2438.4 m < 2450 m
 
-Because the exact altitude is not directly tabulated, **linear interpolation** is used to estimate the atmospheric properties at 2,438.4 m.
+Because the exact altitude is not tabulated, linear interpolation is used to estimate the atmospheric properties at 2438.4 m.
 
-Linear interpolation is a mathematical method for estimating a value between two known data points.
+The general interpolation equation is:
 
-The general equation is:
-
-\[
-y=y_1+\frac{x-x_1}{x_2-x_1}(y_2-y_1)
-\]
+y = y₁ + ((x − x₁)/(x₂ − x₁)) × (y₂ − y₁)
 
 where:
 
-- \(x\) = required value
-- \(x_1\) = lower known value
-- \(x_2\) = upper known value
-- \(y_1\) = value corresponding to \(x_1\)
-- \(y_2\) = value corresponding to \(x_2\)
+- x = required altitude
+- x₁ = lower tabulated altitude
+- x₂ = upper tabulated altitude
+- y₁ = value at x₁
+- y₂ = value at x₂
 
-For this calculation:
-
-\[
-x=2438.4\ m
-\]
-
-\[
-x_1=2400\ m
-\]
-
-\[
-x_2=2450\ m
-\]
-
-The same interpolation method is applied separately to pressure and temperature.
+The same method is applied to pressure and temperature.
 
 ---
 
 ## Pressure at 8,000 ft
 
-The NASA table gives:
+NASA table values:
 
-\[
-P_1=75626\ Pa
-\]
+- P₁ = 75,626 Pa at 2400 m
+- P₂ = 75,153 Pa at 2450 m
 
-at:
+Interpolation equation:
 
-\[
-h_1=2400\ m
-\]
-
-and:
-
-\[
-P_2=75153\ Pa
-\]
-
-at:
-
-\[
-h_2=2450\ m
-\]
-
-Using the linear interpolation equation:
-
-\[
-P=P_1+\frac{h-h_1}{h_2-h_1}(P_2-P_1)
-\]
+P = P₁ + ((h − h₁)/(h₂ − h₁)) × (P₂ − P₁)
 
 Substituting:
 
-\[
-P=75626+
-\frac{2438.4-2400}{2450-2400}
-(75153-75626)
-\]
+P = 75626 + ((2438.4 − 2400)/(2450 − 2400)) × (75153 − 75626)
 
-First, determine the position of 2,438.4 m between the two tabulated altitudes:
+P = 75626 + (38.4 / 50) × (-473)
 
-\[
-\frac{2438.4-2400}{2450-2400}
-=
-\frac{38.4}{50}
-=
-0.768
-\]
+P = 75626 + 0.768 × (-473)
+
+P = 75,262.7 Pa
 
 Therefore:
 
-\[
-P=75626+0.768(75153-75626)
-\]
+P ≈ 75.263 kPa
 
-\[
-P=75626+0.768(-473)
-\]
-
-\[
-P=75262.736\ Pa
-\]
-
-Therefore, the interpolated atmospheric pressure at the selected cruise altitude is approximately:
-
-\[
-\boxed{P=75263\ Pa}
-\]
-
-or:
-
-\[
-\boxed{P=75.263\ kPa}
-\]
+Pressure decreases with increasing altitude. The interpolated value therefore lies between the two NASA tabulated values, which provides confidence that the result is physically reasonable.
 
 ---
 
 ## Temperature at 8,000 ft
 
-The NASA table gives:
+NASA table values:
 
-\[
-t_1=-0.600^\circ C
-\]
+- t₁ = -0.600 °C at 2400 m
+- t₂ = -0.925 °C at 2450 m
 
-at 2,400 m and:
+Interpolation equation:
 
-\[
-t_2=-0.925^\circ C
-\]
-
-at 2,450 m.
-
-The same linear interpolation method is used:
-
-\[
-t=t_1+\frac{h-h_1}{h_2-h_1}(t_2-t_1)
-\]
+t = t₁ + ((h − h₁)/(h₂ − h₁)) × (t₂ − t₁)
 
 Substituting:
 
-\[
-t=-0.600+
-\frac{2438.4-2400}{2450-2400}
-(-0.925-(-0.600))
-\]
+t = -0.600 + ((2438.4 − 2400)/(2450 − 2400)) × (-0.925 − (-0.600))
 
-\[
-t=-0.600+0.768(-0.325)
-\]
+t = -0.600 + 0.768 × (-0.325)
 
-\[
-\boxed{t=-0.8496^\circ C}
-\]
+t = -0.8496 °C
 
-The temperature therefore becomes approximately:
+Therefore:
 
-\[
-\boxed{t=-0.850^\circ C}
-\]
+t ≈ -0.850 °C
+
+The interpolated temperature also lies between the two NASA tabulated values and follows the expected reduction in temperature with increasing altitude.
 
 ---
 
@@ -315,68 +201,40 @@ The temperature therefore becomes approximately:
 
 The ideal gas relationship requires absolute temperature in Kelvin.
 
-The conversion is:
+T(K) = t(°C) + 273.160
 
-\[
-T(K)=t(^\circ C)+273.160
-\]
+Substituting:
 
-Therefore:
+T = -0.8496 + 273.160
 
-\[
-T=-0.8496+273.160
-\]
-
-\[
-\boxed{T=272.3104\ K}
-\]
+T = 272.3104 K
 
 ---
 
 ## Density Calculation
 
-Air density is calculated from pressure and absolute temperature using the ideal gas relationship:
+Air density is calculated using the ideal gas relationship:
 
-\[
-\boxed{\rho=\frac{p}{RT}}
-\]
+ρ = p / (R × T)
 
 where:
 
-- \(\rho\) = air density (kg/m³)
-- \(p\) = atmospheric pressure (Pa)
-- \(R\) = specific gas constant for dry air, \(287.05\ J/(kg\cdot K)\)
-- \(T\) = absolute temperature (K)
+- ρ = air density (kg/m³)
+- p = atmospheric pressure (Pa)
+- R = specific gas constant for dry air (287.05 J/kg·K)
+- T = absolute temperature (K)
 
-Using the interpolated NASA atmospheric conditions:
+Substituting:
 
-\[
-p=75262.736\ Pa
-\]
+ρ = 75262.7 / (287.05 × 272.3104)
 
-\[
-T=272.3104\ K
-\]
+ρ = 0.96285 kg/m³
 
 Therefore:
 
-\[
-\rho=
-\frac{75262.736}
-{287.05(272.3104)}
-\]
+ρ ≈ 0.963 kg/m³
 
-\[
-\boxed{\rho\approx0.96285\ kg/m^3}
-\]
-
-For subsequent aircraft calculations, this can be rounded to:
-
-\[
-\boxed{\rho=0.963\ kg/m^3}
-\]
-
-This value is therefore derived from the standard-atmosphere pressure and temperature rather than prescribed as an arbitrary input.
+This value is derived from the NASA standard-atmosphere pressure and temperature data rather than prescribed as an arbitrary input.
 
 ---
 
@@ -384,23 +242,17 @@ This value is therefore derived from the standard-atmosphere pressure and temper
 
 Dynamic pressure is calculated using:
 
-\[
-q=\frac{1}{2}\rho V^2
-\]
+q = 0.5 ρV²
 
-Therefore, the atmospheric density directly affects the calculated dynamic pressure.
+The atmospheric density therefore directly affects the calculated dynamic pressure.
 
-Dynamic pressure is then used to determine the aerodynamic lift required for the aircraft's cruise condition:
+Dynamic pressure is then used within the lift equation:
 
-\[
-L=qSC_L
-\]
+L = qSCL
 
-Rearranging gives:
+Rearranging:
 
-\[
-C_L=\frac{L}{qS}
-\]
+CL = L / (qS)
 
 The atmospheric calculation therefore forms an important part of the overall aircraft-performance methodology.
 
@@ -408,74 +260,68 @@ The atmospheric calculation therefore forms an important part of the overall air
 
 ## Calculation Sequence
 
-The atmospheric calculation forms the following part of the overall engineering methodology:
-
-**Selected aircraft cruise altitude**
+Selected cruise altitude
 
 ↓
 
-**Convert 8,000 ft to 2,438.4 m**
+8,000 ft
 
 ↓
 
-**NASA standard-atmosphere table**
+Convert to metres
 
 ↓
 
-**Extract surrounding atmospheric data**
+2438.4 m
 
 ↓
 
-**Linear interpolation**
+NASA Standard Atmosphere Table
 
 ↓
 
-**Pressure and temperature at 2,438.4 m**
+Extract surrounding atmospheric data
 
 ↓
 
-**Ideal gas relationship**
-
-\[
-\rho=\frac{p}{RT}
-\]
+Linear interpolation
 
 ↓
 
-**Air density**
-
-\[
-\rho\approx0.963\ kg/m^3
-\]
+Pressure at 2438.4 m
 
 ↓
 
-**Dynamic pressure**
-
-\[
-q=\frac{1}{2}\rho V^2
-\]
+Temperature at 2438.4 m
 
 ↓
 
-**Required lift and derived lift coefficient**
+Density calculation
 
-\[
-L=W
-\]
+ρ = p / (R × T)
 
-\[
-C_L=\frac{L}{qS}
-\]
+↓
 
-This provides a traceable link between the selected aircraft operating condition, the published standard-atmosphere data and the aerodynamic calculations that follow.
+ρ ≈ 0.963 kg/m³
+
+↓
+
+Dynamic pressure
+
+q = 0.5 ρV²
+
+↓
+
+Lift coefficient
+
+CL = L / (qS)
 
 ---
 
 ## Source
 
-NASA Technical Reports Server.
+NASA Technical Reports Server
 
-*Standard Atmosphere — Tables and Data for Altitudes to 65,800 Feet.*
+*Standard Atmosphere – Tables and Data for Altitudes to 65,800 Feet*
 
-[NASA Standard Atmosphere Reference](https://ntrs.nasa.gov/citations/19930090991)
+https://ntrs.nasa.gov/citations/19930090991
