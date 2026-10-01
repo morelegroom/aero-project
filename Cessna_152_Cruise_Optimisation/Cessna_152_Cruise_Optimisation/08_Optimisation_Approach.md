@@ -192,3 +192,209 @@ CL ≈ 0.344
 The next stage is to establish a defensible aerodynamic relationship between angle of attack, lift and drag before calculating the optimisation results.
 
 No drag coefficient or optimum angle of attack is assumed at this stage.
+
+# Aerodynamic Optimisation Results
+
+## Purpose
+
+The optimisation approach defined in Section 08 was implemented by varying angle of attack while maintaining the selected baseline flight condition.
+
+The aerodynamic response was evaluated using NASA FoilSim, with the following inputs held constant:
+
+| Parameter |                          Value |
+| --------- | -----------------------------: |
+| Airspeed  | 123 mph (approximately 107 kt) |
+| Altitude  |                       8,000 ft |
+| Wing area |                      159.5 ft² |
+| Camber    |                             0% |
+| Thickness |                            12% |
+
+Angle of attack was varied between 0° and 6°.
+
+The resulting lift, drag, lift coefficient and drag coefficient were recorded for each condition.
+
+The model is a simplified aerodynamic representation and the camber and thickness inputs should therefore be treated as modelling assumptions rather than an exact representation of the Cessna 152 wing geometry.
+
+---
+
+## Angle of Attack Sweep
+
+The results obtained from the aerodynamic model are shown below.
+
+| Angle of Attack | Lift (lb) |     CL | Drag (lb) |     CD |       L/D |
+| --------------: | --------: | -----: | --------: | -----: | --------: |
+|              0° |         0 | 0.0000 |        67 | 0.0158 |         — |
+|              2° |     1,161 | 0.2394 |       110 | 0.0228 |     10.50 |
+|              3° |     1,725 | 0.3556 |       144 | 0.0297 |     11.97 |
+|              4° |     2,278 | 0.4695 |       189 | 0.0389 | **12.07** |
+|              5° |     2,820 | 0.5812 |       244 | 0.0503 |     11.56 |
+|              6° |     3,361 | 0.6907 |       311 | 0.0641 |     10.77 |
+
+At 0° angle of attack, the model produces zero lift, so an L/D value is not considered meaningful for the purpose of this comparison.
+
+---
+
+## Lift-to-Drag Ratio
+
+Aerodynamic efficiency was evaluated using:
+
+$$
+L/D = \frac{C_L}{C_D}
+$$
+
+The calculated values show that aerodynamic efficiency increased between 2° and 4° angle of attack:
+
+* 2° → L/D ≈ 10.50
+* 3° → L/D ≈ 11.97
+* 4° → L/D ≈ 12.07
+
+Beyond 4°, the lift-to-drag ratio decreased:
+
+* 5° → L/D ≈ 11.56
+* 6° → L/D ≈ 10.77
+
+The **highest measured L/D within the tested range was approximately 12.07 at 4° angle of attack**.
+
+This identifies 4° as the highest-efficiency point measured in this particular sweep.
+
+It does not establish 4° as the exact optimum for the real Cessna 152. The result is dependent on the selected flight condition, the simplified aerodynamic model and the discrete angle-of-attack points tested.
+
+---
+
+## Lift Response
+
+Lift increased with angle of attack throughout the tested range.
+
+The model produced:
+
+* 1,161 lb of lift at 2°
+* 1,725 lb at 3°
+* 2,278 lb at 4°
+* 2,820 lb at 5°
+* 3,361 lb at 6°
+
+This demonstrates the expected relationship between increasing angle of attack and increasing lift within the range investigated.
+
+However, the increase in lift was accompanied by an increase in drag.
+
+---
+
+## Drag Response
+
+Drag increased progressively as angle of attack increased.
+
+The calculated drag increased from:
+
+* 110 lb at 2°
+* 144 lb at 3°
+* 189 lb at 4°
+* 244 lb at 5°
+* 311 lb at 6°
+
+The increase in drag becomes increasingly significant at the higher angles of attack.
+
+This explains why the lift-to-drag ratio does not continue increasing despite the continued increase in lift.
+
+The results therefore demonstrate the trade-off identified in Section 08:
+
+**Increasing angle of attack → increased lift → increased drag → changing aerodynamic efficiency**
+
+---
+
+## Graphical Results
+
+The numerical results were plotted to make the relationships between angle of attack and aerodynamic performance easier to interpret.
+
+### Lift-to-Drag Ratio
+
+The L/D plot is the primary optimisation result because it directly represents the aerodynamic efficiency measure selected in Section 08.
+
+![Lift-to-Drag Ratio against Angle of Attack](results/aoa_vs_ld.png)
+
+The plot shows the increase in aerodynamic efficiency up to the 4° test point, followed by a reduction at higher angles of attack.
+
+### Lift
+
+![Lift against Angle of Attack](results/aoa_vs_lift.png)
+
+The lift plot shows the increase in generated lift as angle of attack increases.
+
+### Drag
+
+![Drag against Angle of Attack](results/aoa_vs_drag.png)
+
+The drag plot shows the corresponding increase in aerodynamic drag.
+
+---
+
+## Reference Weight Comparison
+
+The aerodynamic results can also be compared with the 1,670 lb maximum gross weight reference value used for the aircraft.
+
+The model produces:
+
+* 1,161 lb of lift at 2°
+* 1,725 lb of lift at 3°
+
+Therefore, the 1,670 lb reference weight lies between the two measured points.
+
+Assuming a locally linear relationship between these two points, the corresponding angle of attack can be estimated by interpolation:
+
+$$
+\alpha =
+2 +
+\frac{1670-1161}{1725-1161}
+(3-2)
+$$
+
+which gives:
+
+$$
+\alpha \approx 2.9^\circ
+$$
+
+The corresponding interpolated aerodynamic coefficients are approximately:
+
+$$
+C_L \approx 0.344
+$$
+
+$$
+C_D \approx 0.029
+$$
+
+giving:
+
+$$
+L/D \approx 11.86
+$$
+
+This is an interpolation between the 2° and 3° model results rather than a directly simulated FoilSim result.
+
+The calculation provides a useful connection between the aerodynamic sweep and the aircraft weight constraint.
+
+It is important to distinguish this result from the 4° efficiency result:
+
+* **Approximately 2.9°** is the interpolated angle at which the model produces approximately the 1,670 lb reference lift.
+* **4°** is the point with the highest measured L/D within the tested angle-of-attack range.
+
+These represent two different aspects of the optimisation problem.
+
+---
+
+## Interpretation
+
+The results demonstrate that maximising lift alone does not maximise aerodynamic efficiency.
+
+As angle of attack increases, the model produces progressively more lift, but it also produces progressively more drag.
+
+The highest measured L/D occurs at 4°, after which the increase in drag causes aerodynamic efficiency to decrease.
+
+The weight comparison provides a separate operating constraint. Using the 1,670 lb maximum gross weight as a reference, the model reaches the required lift between the 2° and 3° test points, with linear interpolation giving approximately 2.9°.
+
+The analysis therefore demonstrates the interaction between:
+
+**Aircraft weight → required lift → angle of attack → drag → aerodynamic efficiency**
+
+Rather than defining a single optimum in advance, the study uses the model results to identify how the competing requirements change across the tested operating range.
+ 
