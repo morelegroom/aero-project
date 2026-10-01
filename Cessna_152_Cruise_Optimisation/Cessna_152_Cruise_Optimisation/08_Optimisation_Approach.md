@@ -549,4 +549,42 @@ It is not intended to produce a flight-certified performance model or an exact p
 
 The limitations are therefore an important part of interpreting the results rather than a reason to disregard the analysis.
 
+# Conclusion
+
+## Summary
+
+This project investigated the aerodynamic performance of a Cessna 152 during a defined cruise condition using a simplified aerodynamic model.
+
+The analysis began by establishing a physically defined baseline using aircraft reference data and atmospheric conditions at 8,000 ft.
+
+Angle of attack was then varied between 0° and 6° while maintaining the selected airspeed, altitude, wing area and simplified aerodynamic geometry.
+
+The resulting lift and drag data were used to calculate lift-to-drag ratio as a measure of aerodynamic efficiency.
+
+## Key Findings
+
+The model demonstrated that:
+
+* Lift increased as angle of attack increased across the tested range.
+* Drag also increased as angle of attack increased.
+* The highest measured L/D was approximately **12.07 at 4°**.
+* The 1,670 lb reference weight lies between the model results at 2° and 3°.
+* Linear interpolation gives an estimated angle of attack of approximately **2.9°** for 1,670 lb of modelled lift.
+* The approximately 2.9° result and the 4° maximum-L/D result represent different constraints within the analysis.
+
+The results therefore demonstrate that increasing lift does not necessarily produce increasing aerodynamic efficiency.
+
+## Overall Outcome
+
+The project provides a simplified example of an engineering optimisation process in which:
+
+**A defined operating condition → produces a modelled aerodynamic response → which can be evaluated against performance requirements and constraints.**
+
+The analysis also demonstrates the importance of using physically defined inputs and clearly documenting assumptions rather than prescribing aerodynamic coefficients solely to produce a desired result.
+
+The model is intentionally limited in fidelity. Further work would be required to introduce aircraft-specific aerodynamic data, additional operating conditions and validation against published or experimental results.
+
+Nevertheless, the project establishes a foundation for extending the analysis towards more detailed aircraft performance and modelling-and-simulation work.
+
+
  
