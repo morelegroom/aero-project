@@ -469,4 +469,84 @@ This could allow the effect of additional variables to be investigated, such as:
 
 The same general methodology could then be extended from a simple parameter sweep towards a more detailed aircraft performance or modelling-and-simulation study.
 
+
+# Limitations
+
+## Simplified Aerodynamic Model
+
+The aerodynamic results were generated using NASA FoilSim rather than a detailed aircraft aerodynamic model.
+
+FoilSim provides a useful method for investigating the relationship between aerodynamic inputs and resulting forces, but it does not reproduce the complete aerodynamic characteristics of the Cessna 152.
+
+The results should therefore be treated as a simplified modelling study rather than a flight-validated prediction.
+
+## Simplified Wing Geometry
+
+The model uses:
+
+* 0% camber
+* 12% thickness
+* 159.5 ft² wing area
+
+The wing area is based on the selected Cessna 152 reference data, while the camber and thickness values are modelling assumptions used within the simplified aerodynamic model.
+
+They should not be interpreted as an exact representation of the Cessna 152 wing aerofoil.
+
+## Discrete Angle-of-Attack Points
+
+The analysis evaluates a limited number of angle-of-attack points between 0° and 6°.
+
+The reported 4° result is therefore the highest measured L/D point within the sampled dataset.
+
+A finer sweep could identify the behaviour between these points more accurately.
+
+Similarly, the approximately 2.9° result associated with the 1,670 lb reference lift is obtained through linear interpolation between two model results rather than from a direct simulation.
+
+## Aircraft Weight
+
+The 1,670 lb value is used as a maximum gross weight reference.
+
+An aircraft operating in cruise would not necessarily be at maximum gross weight.
+
+Actual aircraft weight would depend on factors such as:
+
+* Fuel quantity
+* Occupants
+* Baggage
+* Equipment
+* Operating condition
+
+Consequently, the weight comparison should be regarded as a reference-case analysis rather than a prediction of a specific flight.
+
+## Atmospheric and Operating Conditions
+
+The analysis uses a defined cruise condition of approximately 8,000 ft and 123 mph (approximately 107 kt).
+
+Changing altitude or airspeed would change the aerodynamic conditions and could alter the resulting lift, drag and efficiency relationships.
+
+The identified results therefore apply only to the selected modelling condition.
+
+## Validation
+
+The model results have not been validated against flight-test data or a detailed Cessna 152 aerodynamic dataset.
+
+Further validation would be required before using the model for higher-fidelity performance prediction.
+
+Potential validation sources could include:
+
+* Published aircraft performance data
+* Aircraft flight manuals
+* Wind-tunnel data
+* Published aerodynamic data
+* Higher-fidelity aerodynamic simulation
+* Flight-test measurements
+
+## Scope of the Study
+
+The purpose of this project is to demonstrate the process of establishing a physically defined baseline and investigating aerodynamic performance using a simplified model.
+
+It is not intended to produce a flight-certified performance model or an exact prediction of Cessna 152 operating characteristics.
+
+The limitations are therefore an important part of interpreting the results rather than a reason to disregard the analysis.
+
  
