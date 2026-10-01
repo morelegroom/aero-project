@@ -397,4 +397,76 @@ The analysis therefore demonstrates the interaction between:
 **Aircraft weight → required lift → angle of attack → drag → aerodynamic efficiency**
 
 Rather than defining a single optimum in advance, the study uses the model results to identify how the competing requirements change across the tested operating range.
+
+# Discussion
+
+## Interpretation of the Results
+
+The aerodynamic sweep demonstrates the trade-off between lift generation and drag production as angle of attack is increased.
+
+Across the tested range, lift increased continuously with angle of attack. However, drag also increased, meaning that additional lift was accompanied by an increasing aerodynamic penalty.
+
+The lift-to-drag ratio provides a way of considering these competing effects simultaneously.
+
+Within the discrete points tested, the highest measured L/D was approximately 12.07 at 4° angle of attack. At higher angles of attack, L/D decreased despite the continued increase in lift.
+
+This demonstrates that the angle producing the greatest lift is not necessarily the angle producing the greatest aerodynamic efficiency.
+
+## Relationship Between Required Lift and Efficiency
+
+The reference weight comparison provides a second constraint on the optimisation problem.
+
+Using the 1,670 lb maximum gross weight as a reference, the aerodynamic model produces less than the reference weight at 2° and slightly more than the reference weight at 3°.
+
+Linear interpolation between these points gives an estimated angle of attack of approximately 2.9° for 1,670 lb of lift.
+
+This result should not be interpreted as the actual cruise angle of attack of the Cessna 152. It is an interpolated result from the simplified aerodynamic model under the selected test conditions.
+
+The comparison nevertheless demonstrates how an aerodynamic model can be combined with an aircraft-level constraint such as weight.
+
+## Optimisation as a Trade-off
+
+The results show why the optimisation problem cannot be reduced to simply maximising lift.
+
+At higher angles of attack:
+
+**Angle of attack increases → lift increases → drag increases → L/D eventually decreases**
+
+The analysis therefore considers aerodynamic performance as a trade-off between competing quantities.
+
+For the sampled conditions, the 4° test point produced the highest measured L/D, while approximately 2.9° represented the interpolated point associated with the selected 1,670 lb reference lift.
+
+These are different engineering conditions and should not be treated as a single optimum.
+
+## Engineering Significance
+
+The study demonstrates a simplified example of how an aircraft performance problem can be approached using a defined baseline condition, physical constraints and a parameter sweep.
+
+The process can be represented as:
+
+**Aircraft reference data → Flight condition → Atmospheric conditions → Aerodynamic model → Parameter sweep → Performance comparison**
+
+This approach is more representative of an engineering analysis than simply selecting aerodynamic coefficients and plotting their mathematical relationships.
+
+The project also demonstrates the importance of distinguishing between a model result and a real-world aircraft characteristic. The calculated results are meaningful within the assumptions and operating conditions used, but they should not be treated as direct measurements of the Cessna 152.
+
+## Relevance to Further Modelling
+
+The current analysis provides a baseline for more detailed aerodynamic modelling.
+
+A future model could replace the simplified FoilSim representation with aircraft-specific aerodynamic data or a more detailed aerodynamic method.
+
+This could allow the effect of additional variables to be investigated, such as:
+
+* Aircraft weight
+* Altitude
+* Airspeed
+* Wing geometry
+* Reynolds number
+* Mach number
+* Angle of attack
+* Aircraft configuration
+
+The same general methodology could then be extended from a simple parameter sweep towards a more detailed aircraft performance or modelling-and-simulation study.
+
  
